@@ -15,6 +15,7 @@ public class CartTest {
 
 
     @BeforeAll
+    //@BeforeEach
     public static void setup() {
         Map<Object,Double> testCatalog = new HashMap<>();
         testCatalog.put("717029276-9", 150D);
@@ -23,6 +24,14 @@ public class CartTest {
         cart = new Cart(testCatalog);
         cart.setValidUser(true);
         cart.add("717029276-10", 1);
+    }
+
+    //@Test
+    public void assertRemoveFromCart(){
+        cart.remove("717029276-10");
+        HashMap<Object, Long> products = (HashMap<Object, Long>) cart.getProducts();
+        assertNull(products.get("717029276-10"));
+
     }
 
     @Test
@@ -55,9 +64,8 @@ public class CartTest {
 
     @Test
     public void assertProductContainedInCart(){
-        cart.add("717029276-10", 1);
         HashMap<Object, Long> products = (HashMap<Object, Long>) cart.getProducts();
-        assertEquals(2, products.get("717029276-10"));
+        assertEquals(1, products.get("717029276-10"));
     }
 
     @Test

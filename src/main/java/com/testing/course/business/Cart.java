@@ -35,6 +35,15 @@ public class Cart {
         }
     }
 
+    public void remove(Object aProduct) {
+        assertValidUser();
+        assertProductIsSellBySupermarket(aProduct);
+        if(products.containsKey(aProduct)){
+            products.remove(aProduct);
+        }else{
+            products.remove(aProduct);
+        }
+    }
 
     public void assertProductIsSellBySupermarket(Object aProduct) {
         if(!catalog.containsKey(aProduct)) throw new RuntimeException(PRODUCT_IS_NOT_SELL_BY_SUPERMARKET);
