@@ -6,7 +6,7 @@ CREATE TABLE Book (
     quantity NUMERIC(10, 2)
 );
 
-CREATE TABLE CreditCard (
+CREATE TABLE credit_card (
     number VARCHAR(19) PRIMARY KEY,
     valid BOOLEAN NOT NULL
 );
@@ -18,9 +18,16 @@ INSERT INTO Book (isbn, title, gender, price, quantity) VALUES
 ('978-0-7432-7356-5', 'Angels and Demons', 'Thriller', 14.99, 20),
 ('978-1-4028-9462-6', 'Harry Potter and the Philosopher Stone', 'Fantasy', 8.99, 100);
 
-INSERT INTO CreditCard (number, valid) VALUES
+INSERT INTO credit_card (number, valid) VALUES
 ('1234-5678-9012-3456', TRUE),
 ('2345-6789-0123-4567', FALSE),
-('3456-7890-1234-5678', TRUE),
+('3456-7890-1234-5630', TRUE),
 ('4567-8901-2345-6789', TRUE),
 ('5678-9012-3456-7890', FALSE);
+
+CREATE TABLE Payment (
+    id VARCHAR(36) PRIMARY KEY,              -- Assuming UUID or a similar unique identifier
+    total NUMERIC(10, 2) NOT NULL,           -- Total amount of the payment, not null
+    credit_card_number VARCHAR(19) NOT NULL,   -- Credit card number, not null, and references CreditCard table
+    username VARCHAR(255) NOT NULL             -- User associated with the payment, not null
+);

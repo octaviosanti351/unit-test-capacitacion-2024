@@ -8,6 +8,7 @@ import com.testing.course.repository.BookRepository;
 import com.testing.course.repository.CreditCardRepository;
 import org.junit.jupiter.api.BeforeAll;
 import org.mockito.ArgumentMatchers;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,12 +71,12 @@ public class CartControllerIntegrationTests {
                         .param("isbn", "978-3-16-1484123-0")
                         .param("quantity", "1"))
                 .andExpect(status().is5xxServerError())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.error").value("Product is not sell by supermarket"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.error").value("Product is not sell by supermarkejhsdgsdjhsdt"));
 
     }
 
-    /*
-    @Transactional
+
+   /* @Transactional
     @Test
     public void testSavePayment() throws Exception {
 
@@ -97,7 +98,7 @@ public class CartControllerIntegrationTests {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.creditCardNumber").value("1234-5678-9012-3410"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.username").value("user1"));
     }
-    */
+*/
 
 
     @Transactional
@@ -105,13 +106,13 @@ public class CartControllerIntegrationTests {
     public void testSavePaymentWithoutMock() throws Exception {
 
         // Puede cargarse desde un archivo tambien
-        String jsonPayload = "{ \"id\": \"666\", \"total\": 50, \"creditCardNumber\": \"1234-5678-9012-3456\", \"username\": \"user1\" }";
+        String jsonPayload = "{ \"id\": \"1066\", \"total\": 50, \"creditCardNumber\": \"1234-5678-9012-3456\", \"username\": \"user1\" }";
 
         mockMvc.perform(post("/v1/cart/save") // Replace "/your-endpoint-path" with the actual endpoint path
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonPayload))
                 .andExpect(status().isOk()) // Expecting a 200 OK response
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value("666")) // Optionally, assert the response contains the expected values
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value("1066"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.total").value(50))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.creditCardNumber").value("1234-5678-9012-3456"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.username").value("user1"));
