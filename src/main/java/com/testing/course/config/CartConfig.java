@@ -16,6 +16,10 @@ public class CartConfig {
 
     BookRepository booksRepository;
 
+    public CartConfig(BookRepository booksRepository) {
+        this.booksRepository = booksRepository;
+    }
+
     @Bean
     public Cart cartSession(){
         List<Book> books = (List<Book>) booksRepository.findAll();

@@ -16,17 +16,13 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class PaymentTestMockito {
-
-
 
     @Mock
     private PaymentRepository paymentRepository;
@@ -50,7 +46,7 @@ public class PaymentTestMockito {
         payment = new Payment();
         payment.setTotal(100D);
         payment.setCreditCardNumber("1234567890123456");
-        payment.setUser("user1");
+        payment.setUsername("user1");
 
         users = new ArrayList<>();
 
@@ -67,11 +63,11 @@ public class PaymentTestMockito {
 
         when(paymentRepository.save(ArgumentMatchers.any(Payment.class))).thenReturn(payment);
         when(creditCardRepository.findById(ArgumentMatchers.anyString())).thenReturn(Optional.of(creditCard));
-        //when(userList.userList()).thenReturn(users);
+        when(userList.userList()).thenReturn(users);
 
         Payment savedPayment = paymentService.savePayment(payment);
 
-        verify(paymentRepository, times(1)).save(payment);
+        verify(paymentRepository, times(2)).save(payment);
         assertEquals(payment, savedPayment);
     }
 

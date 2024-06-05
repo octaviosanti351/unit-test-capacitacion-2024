@@ -1,10 +1,8 @@
 package com.testing.course;
 
-import com.testing.course.business.Cart;
 import com.testing.course.business.PaymentService;
 import com.testing.course.model.CreditCard;
 import com.testing.course.model.Payment;
-import com.testing.course.model.User;
 import com.testing.course.repository.CreditCardRepository;
 import com.testing.course.repository.PaymentRepository;
 import com.testing.course.repository.UserList;
@@ -46,7 +44,7 @@ public class PaymentTestSpy {
         payment = new Payment();
         payment.setTotal(100D);
         payment.setCreditCardNumber("1234567890123456");
-        payment.setUser("user1");
+        payment.setUsername("user1");
 
         creditCard = new CreditCard();
         creditCard.setNumber("1234567890123456");
@@ -67,7 +65,7 @@ public class PaymentTestSpy {
 
     @Test
     public void testSavePayment_UserNotValidated() {
-        payment.setUser("user2");
+        payment.setUsername("user2");
 
         assertThrows(IllegalArgumentException.class, () -> paymentService.savePayment(payment));
     }

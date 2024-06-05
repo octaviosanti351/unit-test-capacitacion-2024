@@ -26,7 +26,7 @@ public class PaymentService {
 
     public Payment savePayment(Payment payment) {
         Optional<User> userOpt = userList.userList().stream()
-                .filter(userFind -> userFind.getUsername().equals(payment.getUser()))
+                .filter(userFind -> userFind.getUsername().equals(payment.getUsername()))
                 .findFirst();
 
         if(userOpt.isEmpty() || !userOpt.get().isValid()){
@@ -37,7 +37,7 @@ public class PaymentService {
             throw new IllegalArgumentException("Total amount must be greater than zero.");
         }
 
-        Optional<CreditCard> creditCardOptional = creditCardRepository.findById(payment.getCreditCardNumber());
+        Optional<CreditCard> creditCardOptional = creditCardRepository.findByNumber(payment.getCreditCardNumber());
         CreditCard creditCard;
         if(creditCardOptional.isPresent()){
             creditCard = creditCardOptional.get();

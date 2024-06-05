@@ -16,7 +16,7 @@ public class Cart {
     private Boolean validUser;
 
     public Cart(Map<Object,Double> catalog){
-        this.validUser = false;
+        this.validUser = true;
         this.catalog = catalog;
     }
 

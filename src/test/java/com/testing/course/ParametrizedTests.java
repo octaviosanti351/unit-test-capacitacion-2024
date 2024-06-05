@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.*;
 
@@ -29,6 +30,7 @@ public class ParametrizedTests {
     @ParameterizedTest
     //@CsvSource({"717029276-11", "717029276-12"})
     @MethodSource("getParameters")
+    //@ValueSource(strings = {"717029276-11", "717029276-12"})
     public void assertProductsNotSellBySupermarket(String product){
         assertThrows(RuntimeException.class, () -> cart.assertProductIsSellBySupermarket(product));
     }

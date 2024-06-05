@@ -1,10 +1,13 @@
 package com.testing.course.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 public class CreditCard {
 
+    @Id
     String number;
     boolean valid;
 

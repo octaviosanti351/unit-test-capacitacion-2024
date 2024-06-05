@@ -1,20 +1,23 @@
 package com.testing.course.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Payment {
+
+    @Id
     String id;
     Double total;
     String creditCardNumber;
-    String user;
+    String username;
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getId() {

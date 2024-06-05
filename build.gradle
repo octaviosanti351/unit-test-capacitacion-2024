@@ -24,9 +24,18 @@ dependencies {
 	implementation 'com.zaxxer:HikariCP:5.1.0'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0'
+	implementation 'org.junit.platform:junit-platform-suite-engine' // IMPORTAR ESTO PARA CORRER SUITES
+	runtimeOnly 'org.postgresql:postgresql'
+	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+	testImplementation 'org.testcontainers:postgresql'
+	testImplementation 'org.testcontainers:junit-jupiter'
 
 
+}
+
+ext {
+	set('testcontainers.version', "1.19.3")
 }
 
 jacoco {
@@ -43,6 +52,7 @@ tasks.named('test') {
 
 	reports {
 		html.required.set(true)
+		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
 	}
 
 	finalizedBy jacocoTestReport

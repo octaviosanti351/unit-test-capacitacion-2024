@@ -2,6 +2,7 @@ package com.testing.course;
 
 import com.testing.course.business.Cart;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -11,12 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class CartTest {
+
     private static Cart cart;
 
 
-    @BeforeAll
-    //@BeforeEach
-    public static void setup() {
+    //@BeforeAll
+    @BeforeEach
+    public void setup() {
         Map<Object,Double> testCatalog = new HashMap<>();
         testCatalog.put("717029276-9", 150D);
         testCatalog.put("717029276-10", 150D);
@@ -26,12 +28,11 @@ public class CartTest {
         cart.add("717029276-10", 1);
     }
 
-    //@Test
+    @Test
     public void assertRemoveFromCart(){
         cart.remove("717029276-10");
         HashMap<Object, Long> products = (HashMap<Object, Long>) cart.getProducts();
         assertNull(products.get("717029276-10"));
-
     }
 
     @Test
